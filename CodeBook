@@ -1,0 +1,47 @@
+# CodeBook for the tidy dataset
+
+## Data source
+
+This dataset is derived from the "Human Activity Recognition Using Smartphones Data Set" which was originally made avaiable here: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+## Feature selection
+
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. There were 2,947 rows(observations) in the test data set x_test.txt; and 7,352 rows (observations) in x_train.txt.
+
+A “complete” data frame was made by:
+
+1.  Reading measurement data from the test and training sub-directories, Merging in column names (measurement descriptors) using the file features.txt.
+2.  Merging in activity names using the file activity_labels.txt.
+3.  Merging in subject_ids from the files subject_test.txt and subject_train.txt.
+4.  Combing the augmented test and training data into a single data frame with all of the observations and measurement columns, plus the ancillary merged fields.
+
+
+Measurement columns containing the strings “std” or “mean” were identified; measurement columns not containing either of those strings were dropped.  The resulting data frame had 80 columns of measurement data, and one column each for subject and activity.name.
+
+
+The script used the R function ColMeans to calculate the mean value for each kept feature, within subject and activity.name (180 rows for the 30 subjects and 6 activities).  The original measurement column names were retained, but slightly modified by removing the string “()” from each column name.
+
+
+All of the data transformations and summarization are performed by a single R script, run_analysis.R.
+
+In short, for this derived dataset, these signals were used to estimate variables of the feature vector for each pattern:
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+- tBodyAcc-XYZ
+- tGravityAcc-XYZ
+- tBodyAccJerk-XYZ
+- tBodyGyro-XYZ
+- tBodyGyroJerk-XYZ
+- tBodyAccMag
+- tGravityAccMag
+- tBodyAccJerkMag
+- tBodyGyroMag
+- tBodyGyroJerkMag
+- fBodyAcc-XYZ
+- fBodyAccJerk-XYZ
+- fBodyGyro-XYZ
+- fBodyAccMag
+- fBodyAccJerkMag
+- fBodyGyroMag
+- fBodyGyroJerkMag
+
